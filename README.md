@@ -4,12 +4,12 @@
 
 Gazebo：
 
-<img width="600" alt="2026-04-14 16-45-12 的屏幕截图" src="https://github.com/user-attachments/assets/39cd323c-b319-4de4-a5ae-a722d28abedb" />
+<img width="600" alt="Gazebo simulation" src="https://github.com/lanyangyang-gogogo/DRL-AUV-3D-Navigation/blob/master/gazebo.gif?raw=true" />
 
 
 Rviz：
 
-<img width="600" alt="2026-04-14 16-45-58 的屏幕截图" src="https://github.com/user-attachments/assets/f507e766-89df-4972-ae53-faba08349527" />
+<img width="600" alt="Rviz visualization" src="https://github.com/lanyangyang-gogogo/DRL-AUV-3D-Navigation/blob/master/rviz.mp4?raw=true" />
 
 
 
