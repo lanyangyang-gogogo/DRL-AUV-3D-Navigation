@@ -9,7 +9,7 @@ Gazebo：
 
 Rviz：
 
-<img width="600" alt="Rviz visualization" src="https://github.com/lanyangyang-gogogo/DRL-AUV-3D-Navigation/blob/master/rviz.mp4?raw=true" />
+<img width="600" alt="Rviz visualization" src="https://github.com/lanyangyang-gogogo/DRL-AUV-3D-Navigation/blob/master/rviz.gif?raw=true" />
 
 
 
