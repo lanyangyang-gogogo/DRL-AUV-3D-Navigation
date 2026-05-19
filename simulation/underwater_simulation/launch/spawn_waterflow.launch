@@ -1,0 +1,9 @@
+<launch>
+  <!-- 启动 Gazebo 仿真 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- 通过 Gazebo 插件加载水流模型 -->
+  <param name="robot_description" textfile="$(find underwater_simulation)/urdf/waterflow.urdf"/>
+
+  <node name="spawn_waterflow" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -model waterflow" />
+</launch>

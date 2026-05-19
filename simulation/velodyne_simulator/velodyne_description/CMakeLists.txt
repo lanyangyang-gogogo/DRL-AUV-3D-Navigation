@@ -1,0 +1,12 @@
+add_definitions(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
+
+cmake_minimum_required(VERSION 3.0.2)
+project(velodyne_description)
+
+find_package(catkin REQUIRED)
+
+catkin_package()
+
+install(DIRECTORY launch meshes rviz urdf world
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)

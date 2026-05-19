@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!-- Copyright (c) 2016 The UUV Simulator Authors.
+     All rights reserved.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- DVL  -->
+  <xacro:default_dvl_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}">
+    <origin xyz="-1.4 0 -0.312" rpy="0 ${0.5*pi} 0"/>
+  </xacro:default_dvl_macro>
+
+  <!-- Magnetometer  -->
+  <xacro:default_magnetometer namespace="${namespace}" parent_link="${namespace}/base_link"/>
+
+  <!-- RPT  -->
+  <xacro:default_rpt namespace="${namespace}" parent_link="${namespace}/base_link">
+    <origin xyz="-1.32 0 0.8" rpy="0 0 0"/>
+  </xacro:default_rpt>
+
+  <!-- Pressure  -->
+  <!-- <xacro:default_pressure_macro namespace="${namespace}" parent_link="${namespace}/base_link">
+    <origin xyz="-1.32 0.5 0.85" rpy="0 0 0"/>
+  </xacro:default_pressure_macro> -->
+
+  <!-- IMU  -->
+  <xacro:default_imu_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:default_imu_macro> 
+
+  <!-- Mount a camera -->
+  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="">
+    <origin xyz="1.15 0 0.4" rpy="0 0.6 0"/>
+  </xacro:default_camera>
+
+  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="right">
+    <origin xyz="1.15 -0.63 0.4" rpy="0 0.6 0.4"/>
+  </xacro:default_camera>
+
+  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="left">
+    <origin xyz="1.15 0.63 0.4" rpy="0 0.6 -0.4"/>
+  </xacro:default_camera>
+
+  <!-- Mount a GPS. -->
+  <xacro:default_gps namespace="${namespace}" parent_link="${namespace}/base_link" />
+  
+  <!-- Mount a Pose 3D sensor. -->
+  <xacro:default_pose_3d_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}" />
+    
+  <!-- Multibeam sonar -->
+  <!-- <xacro:forward_multibeam_p900 namespace="${namespace}" parent_link="${namespace}/base_link"/>
+    <origin xyz="-1.32 0 0.8" rpy="0 0 0"/>
+  </xacro:forward_multibeam_p900> -->
+
+    <!-- Velodyne -->
+  <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="${namespace}/base_link" name="velodyne" topic="/velodyne_points" hz="20" samples="720" gpu="true" min_angle="-1.0472" max_angle="1.0472" min_range="0.8">
+    <!-- <origin xyz="1.35 0 -0.62" rpy="0 0 0" /> -->
+    <origin xyz="1.35 0 0" rpy="0 0 0" />
+  </xacro:VLP-16>
+
+   <!-- Laser -->
+  <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/hokuyo.xacro"/>
+  <!-- <xacro:laser name="front_laser" parent="${namespace}/base_link" xyz="1.35 0 -0.62" rpy="0 0 0" meshes="package://uuv_sensor_ros_plugins/meshes/hokuyo.dae"/>  -->
+  <xacro:laser name="front_laser" parent="${namespace}/base_link" xyz="1.35 0 0" rpy="0 0 0" meshes="package://uuv_sensor_ros_plugins/meshes/hokuyo.dae"/>
+  <!-- <xacro:laser name="front_laser" parent="${namespace}/base_link" xyz="1.35 0 -0.62" rpy="0 0 0"/>-->
+
+      <!-- Velodyne_2 -->
+  <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="${namespace}/base_link" name="velodyne_2" topic="/velodyne_points_2" hz="20" samples="720" gpu="false" min_angle="-0.1745" max_angle="0.1745" min_range="0.8">
+    <origin xyz="-1 0 -0.90" rpy="0 1.5708 0" />
+  </xacro:VLP-16>
+
+   <!-- Laser_2 -->
+  <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/hokuyo.xacro"/>
+  <xacro:laser name="front_laser_2" parent="${namespace}/base_link" xyz="-1 0 -0.90" rpy="0 1.5708 0" meshes="package://uuv_sensor_ros_plugins/meshes/hokuyo.dae"/>
+
+
+  <!-- Multibeam sonar p900 -->
+   <!-- <xacro:multibeam_blueview_p900_raster_macro robot_link="${namespace}/base_link" name="blueview_p900" scale="1 1 1" 
+                                              sonar_image_topic="sonar_image"  debug="false"
+                                              sonar_image_raw_topic="sonar_image_raw"
+                                              maxDistance="30" raySkips="10"
+                                              plotScaler="0" sensorGain="0.02"
+                                              writeLog="false" writeFrameInterval="5"
+                                              artificialVehicleVibration="false"
+                                              constantReflectivity="true"
+                                              reflectivityDatabaseFile="variationalReflectivityDatabase.csv"
+                                              ray_visual="true" />   -->
+  <!-- <xacro:multibeam_blueview_p900_ray_macro    name="blueview_p900" scale="1 1 1" 
+                                              sonar_image_topic="sonar_image" debug="false" robot_name="${namespace}"
+                                              sonar_image_raw_topic="sonar_image_raw"
+                                              maxDistance="10" raySkips="10"
+                                              plotScaler="0" sensorGain="0.02"
+                                              writeLog="false" writeFrameInterval="5"
+                                              gaussian_noise_mean="0.0"
+                                              gaussian_noise_stddev="0.0"
+                                              fidelity="500" robot_link="${namespace}/base_link" ray_visual="true"/>-->
+</robot>

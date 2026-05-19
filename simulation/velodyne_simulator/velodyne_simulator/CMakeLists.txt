@@ -1,0 +1,6 @@
+add_definitions(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
+
+cmake_minimum_required(VERSION 3.0.2)
+project(velodyne_simulator)
+find_package(catkin REQUIRED)
+catkin_metapackage()

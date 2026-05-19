@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="waterflow">
+
+  <!-- 根链接 base_link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder radius="1.0" length="0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="1.0" length="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 与 base_link 连接的其他链接或关节 -->
+  <joint name="base_to_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="waterflow_link"/>
+    <origin xyz="0 0 -10" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 水流的第二个链接 -->
+  <link name="waterflow_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.5"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.5"/>
+      </geometry>
+    </collision>
+  </link>
+
+</robot>
